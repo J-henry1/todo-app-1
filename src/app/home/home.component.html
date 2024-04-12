@@ -15,8 +15,7 @@
               <input [formControl]="passwordFormControl" type= password matInput placeholder="Password">
             </mat-form-field>
           </p>
-
-          <button mat-stroked-button color="accent">Login</button>
+          <button (click)="LoginUser()" mat-stroked-button color="accent">Login</button>
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
