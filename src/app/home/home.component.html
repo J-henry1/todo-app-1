@@ -6,13 +6,13 @@
         <p>
             <mat-form-field appearance="fill">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Email">
+              <input [formControl]="emailFormControl" matInput placeholder="Email">
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Password</mat-label>
-              <input  type= password matInput placeholder="Password">
+              <input [formControl]="passwordFormControl" type= password matInput placeholder="Password">
             </mat-form-field>
           </p>
 
