@@ -4,10 +4,12 @@
   </button>
   <span>My Todos App</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon" aria-label="Person icon" (click)="toggleLogin()">
-    <mat-icon>{{ isLoginMode ? 'person' : 'login' }}</mat-icon>
+  <button mat-icon-button class="example-icon" aria-label="Person icon" [routerLink]="['/Create']">
+    <mat-icon>person</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']">
+    <mat-icon>login</mat-icon>
   </button>
 </mat-toolbar>
 
-<app-create-account *ngIf="!isLoginMode"></app-create-account>
-<app-home *ngIf="isLoginMode"></app-home>
+<router-outlet></router-outlet>
