@@ -15,6 +15,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TodoListsComponent } from './todo-lists/todo-lists.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 
 @NgModule({
@@ -23,7 +27,8 @@ import { TodoListsComponent } from './todo-lists/todo-lists.component';
     HomeComponent,
     NavbarComponent,
     CreateAccountComponent,
-    TodoListsComponent
+    TodoListsComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,10 @@ import { TodoListsComponent } from './todo-lists/todo-lists.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatDividerModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

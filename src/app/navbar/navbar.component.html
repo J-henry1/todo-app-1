@@ -4,12 +4,21 @@
   </button>
   <span>My Todos App</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon" aria-label="Person icon" [routerLink]="['/Create']">
-    <mat-icon>person</mat-icon>
+  
+  <button mat-icon-button class="example-icon" aria-label="Home icon" [routerLink]="['/']">
+    <mat-icon>home</mat-icon>
   </button>
+  
+  <button mat-icon-button class="example-icon" aria-label="Person icon" [routerLink]="['/Create']">
+    <mat-icon>person_add</mat-icon>
+  </button>
+  
   <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']">
     <mat-icon>login</mat-icon>
   </button>
+  
 </mat-toolbar>
-
 <router-outlet></router-outlet>
+
+
+
