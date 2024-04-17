@@ -13,7 +13,7 @@ export class TodoService {
 
   UserLoggedIn:EventEmitter<string>= new EventEmitter<string>();
 
-  currentUserToken: null=null;
+  
 
 
 
@@ -49,38 +49,48 @@ export class TodoService {
         'Authorization': 'Basic ' + btoa(`${email}:${password}`)//used stack overflow for this - https://stackoverflow.com/questions/53613529/angular-6-http-get-request-with-http-basic-authentication
       });
 
-      let authToken = await firstValueFrom(this.httpClient.post('https://unfwfspring2024.azurewebsites.net/user/login', userData, { headers: headers }));
-      localStorage.setItem('authToken',JSON.stringify(userData));
+      let token = await firstValueFrom(this.httpClient.post('https://unfwfspring2024.azurewebsites.net/user/login', userData, { headers: headers }));
+      localStorage.setItem('token',JSON.stringify(token));
       this.UserLoggedIn.emit(email);
-      console.log(authToken);
+      console.log(token);
       this.router.navigate(['/Todos']);
-      return firstValueFrom(of(null));
+      return token;
     } catch(error) {
       console.log(error);
-      return false;
+      return firstValueFrom(of(null));
     }
   }
 
-  async CreateTodo(title: string, publicAccess: boolean){
-    
+  async CreateTodo(title: string, publicAccess: boolean) {
     let todoData = {
       title: title,
       public: publicAccess,
+    };
+  
+    const token = localStorage.getItem('token');
+    
+    // Check if token is valid
+    console.log(token);
+  
+    let headers: HttpHeaders | undefined;
+    
+    if (token !== null) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+      });
     }
-
-    const token = localStorage.getItem('currentUserToken');
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
+  
     try {
-      const response = await this.httpClient.post('https://unfwfspring2024.azurewebsites.net/todo', todoData, { headers });
-      console.log(response); // Log the response from the server
-      return response; // Return the response if needed
+      if (headers !== undefined) {
+        const response = await firstValueFrom(this.httpClient.post('https://unfwfspring2024.azurewebsites.net/todo', todoData, { headers }));
+        console.log("Todo created:", response);
+        return response;
+      } else {
+        throw new Error('Token not found in local storage');
+      }
     } catch(error) {
-      console.error(error); // Log any errors that occur
-      throw error; // Rethrow the error to handle it in the calling code
+      console.error("Error creating todo:", error);
+      throw error;
     }
   }
 }//end TodoService Class

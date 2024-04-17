@@ -6,16 +6,16 @@
         <p>
             <mat-form-field appearance="fill">
               <mat-label>Todo Title</mat-label>
-              <input  matInput placeholder="Email">
+              <input [formControl]="title"  matInput placeholder="Email">
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="fill">
               <mat-label>Public Access</mat-label>
-              <input matInput placeholder="Access">
+              <input [formControl]="publicAccess" matInput placeholder="Access">
             </mat-form-field>
           </p>
-          <button (click)="CreateTodos()" mat-stroked-button color="accent">Login</button>
+          <button (click)="CreateTodos()" mat-stroked-button color="accent">Create Todo</button>
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
