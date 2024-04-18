@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TodoListsComponent } from './todo-lists/todo-lists.component';
+import { ViewTodosComponent } from './view-todos/view-todos.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path:'Todos',
     component: TodoListsComponent
+  },
+  {
+    path: '',
+    component: ViewTodosComponent
   }
 
 

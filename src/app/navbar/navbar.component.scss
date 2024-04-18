@@ -2,9 +2,6 @@
     flex: 1 1 auto;
   }
   
-  section {
-    display: table;
-  }
   
   .example-label {
     display: table-cell;
@@ -34,21 +31,4 @@
     width: 120px;
   }
 
-  mat-sidenav{
-    margin: 16px;
-    width: 200px;
-    border-right: none;
-    background-color: black;
-    color: rgb(45, 188, 76);
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-}
-
-.content{
-  height: calc(100vh - 98px);
-}
-
-mat-sidenav-container{
- height: calc(100vh - 65px);
-}
+  
