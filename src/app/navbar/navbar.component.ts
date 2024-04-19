@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isLoginMode: boolean = false;
+  
 
   toggleLogin() {
     this.isLoginMode = !this.isLoginMode;

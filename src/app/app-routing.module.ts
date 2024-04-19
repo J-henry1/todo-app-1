@@ -20,7 +20,7 @@ const routes: Routes = [
     component: TodoListsComponent
   },
   {
-    path: '',
+    path: 'View',
     component: ViewTodosComponent
   }
 

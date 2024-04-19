@@ -16,19 +16,26 @@
   <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']">
     <mat-icon>login</mat-icon>
   </button>
+
+  <!-- <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']">
+    <mat-icon>setting</mat-icon>
+  </button> -->
+
   <router-outlet></router-outlet>
 </mat-toolbar>
+
+
 <mat-sidenav-container>
-  <mat-sidenav #side opened>
+  <mat-sidenav #side closed>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/Home']">Add Todo</a>
-      <a mat-list-item [routerLink]="['/Create']">View Todos</a>
+      <a mat-list-item [routerLink]="['/Todos']">Add Todo</a>
+      <a mat-list-item [routerLink]="['/View']">View Todos</a>
       <a mat-list-item [routerLink]="['/Home']">Edit Todo</a>
       <a mat-list-item [routerLink]="['/Create']">Edit User</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 88vh;"><router-outlet></router-outlet></div>
+    <div style="height: 99vh;"><router-outlet></router-outlet></div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

@@ -19,6 +19,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { ViewTodosComponent } from './view-todos/view-todos.component';
+import { MatTableModule } from '@angular/material/table';
+import { OnInit } from '@angular/core';
 
 
 
@@ -31,7 +34,8 @@ import { MatListModule } from '@angular/material/list';
     NavbarComponent,
     CreateAccountComponent,
     TodoListsComponent,
-    SidenavComponent
+    SidenavComponent,
+    ViewTodosComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,8 @@ import { MatListModule } from '@angular/material/list';
     HttpClientModule,
     MatSidenavModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
 
   ],
   providers: [],
