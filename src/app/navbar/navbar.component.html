@@ -1,6 +1,6 @@
 <mat-toolbar>
   <button mat-icon-button class="example-icon" aria-label="Menu icon" (click)="side.toggle();">
-    <mat-icon >menu</mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
   <span>My Todos App</span>
   <span class="example-spacer"></span>
@@ -17,27 +17,30 @@
     <mat-icon>login</mat-icon>
   </button>
 
-  <!-- <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']">
-    <mat-icon>setting</mat-icon>
-  </button> -->
+  <button mat-icon-button class="example-icon" aria-label="Edit Account" [routerLink]="['/Account']" *ngIf="isLoginMode">
+    <mat-icon>manage_accounts</mat-icon>
+  </button>
 
   <router-outlet></router-outlet>
 </mat-toolbar>
 
 
-<mat-sidenav-container>
-  <mat-sidenav #side closed>
-    <mat-nav-list>
-      <a mat-list-item [routerLink]="['/Todos']">Add Todo</a>
-      <a mat-list-item [routerLink]="['/View']">View Todos</a>
-      <a mat-list-item [routerLink]="['/Home']">Edit Todo</a>
-      <a mat-list-item [routerLink]="['/Create']">Edit User</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div style="height: 99vh;"><router-outlet></router-outlet></div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div>
+  <mat-sidenav-container>
+    <mat-sidenav #side closed >
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/Todos']" *ngIf="isLoginMode">Add Todo</a>
+        <a mat-list-item [routerLink]="['/View']" *ngIf="isLoginMode">View Todos</a>
+        <a mat-list-item [routerLink]="['/Home']" *ngIf="isLoginMode">Edit Todo</a>
+        <a mat-list-item [routerLink]="['/Create']" *ngIf="isLoginMode">Edit User</a>
+        <a mat-list-item *ngIf="!isLoginMode" [routerLink]="['/Home']">Please Login</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 99vh;"><router-outlet></router-outlet></div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
 
 
 

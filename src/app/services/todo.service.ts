@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom, of } from 'rxjs';
 import {Todo} from '../models/todos/todos';
 import { jwtDecode } from 'jwt-decode';
+import { User } from '../models/user/user';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class TodoService {
   UserLoggedIn:EventEmitter<boolean>= new EventEmitter<boolean>();
 
   TodoList: Todo[] = [];
+  User: User| undefined;
 
 
 
@@ -90,6 +92,7 @@ export class TodoService {
       if (headers !== undefined) {
         const response = await firstValueFrom(this.httpClient.post('https://unfwfspring2024.azurewebsites.net/todo', todoData, { headers }));
         console.log("Todo created:", response);
+        this.router.navigate(['/View']);
         return response;
       } else {
         throw new Error('Token not found in local storage');
@@ -128,4 +131,55 @@ export class TodoService {
        throw error;
      }
     }
+  async GetUser():Promise<User>{
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+
+    if (token !== null) {
+     headers = new HttpHeaders({
+       'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+     });
+    }
+
+    try{
+      let response = await firstValueFrom(this.httpClient.get<User>('https://unfwfspring2024.azurewebsites.net/user', { headers }));
+      console.log(response);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+
+  }
+
+  async UpdateUser(email: string, password: string, name:string){
+
+    let userData = {
+      name: name,
+      email: email,
+      password: password,
+    }
+
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+
+    if (token !== null) {
+     headers = new HttpHeaders({
+       'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+     });
+    }
+
+
+    try{
+      let response = await firstValueFrom(this.httpClient.patch('https://unfwfspring2024.azurewebsites.net/user', userData, {headers}));
+      console.log(response);
+      this.router.navigate(['/Home']);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+  }
 }//end TodoService Class

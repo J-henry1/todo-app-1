@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TodoListsComponent } from './todo-lists/todo-lists.component';
 import { ViewTodosComponent } from './view-todos/view-todos.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
 
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'View',
     component: ViewTodosComponent
+  },
+  {
+    path: 'Account',
+    component: EditUserComponent
   }
 
 

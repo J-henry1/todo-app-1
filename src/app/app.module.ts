@@ -22,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { ViewTodosComponent } from './view-todos/view-todos.component';
 import { MatTableModule } from '@angular/material/table';
 import { OnInit } from '@angular/core';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -35,7 +36,8 @@ import { OnInit } from '@angular/core';
     CreateAccountComponent,
     TodoListsComponent,
     SidenavComponent,
-    ViewTodosComponent
+    ViewTodosComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

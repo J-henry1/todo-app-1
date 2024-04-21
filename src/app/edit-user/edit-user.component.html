@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Update User</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput [formControl]="emailFormControl" placeholder="Email" [value]="user?.email">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input  type= text matInput [formControl]="passwordFormControl" placeholder="Password">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input  type= text matInput [formControl]="nameFormControl" placeholder="Name" [value]="user?.name">
+            </mat-form-field>
+          </p>
+
+          <button (click)="updateUser()" mat-stroked-button color="accent">Update Account</button>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+
