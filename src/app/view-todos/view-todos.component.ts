@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todos/todos';
 import { MatTableDataSource } from '@angular/material/table';
+import { EditDataDialogComponent } from '../edit-data-dialog/edit-data-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-todos',
@@ -10,13 +12,14 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ViewTodosComponent {
   
-  displayedColumns: string[] = ['title', 'created_at', 'created_by', 'public_list'];
+  displayedColumns: string[] = ['title', 'created_at', 'created_by', 'public_list', 'edit', 'delete'];
   todos: Todo[] = [];
   dataSource: MatTableDataSource<Todo>;
 
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, private dialog: MatDialog ) {
     this.dataSource = new MatTableDataSource<Todo>([]);
+
   }
 
   ngOnInit() {
@@ -32,6 +35,17 @@ export class ViewTodosComponent {
       console.error(err);
       return err;
     }
+  }
+
+  openDialog(todo: Todo): void{
+    const dialogRef = this.dialog.open(EditDataDialogComponent, {
+      width: '375px',
+      data: { todo: todo } 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }
 

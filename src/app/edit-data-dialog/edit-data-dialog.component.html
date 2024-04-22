@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Todo Item {{data.todo.id}}</h2>
+<h2 mat-dialog-title>Todo Item {{data.todo.title}}</h2>
+<h2 mat-dialog-title>Todo Item {{data.todo.public_list}}</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                <mat-form-field appearance="fill">
+                  <input [formControl]="title"  matInput placeholder="Todo">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="fill">
+                  <mat-label>Public Access</mat-label>
+                  <input [formControl]="publicAccess" matInput placeholder="Access">
+                </mat-form-field>
+              </p>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true"  (click)="EditTodo()" cdkFocusInitial>Update</button>
+</mat-dialog-actions>

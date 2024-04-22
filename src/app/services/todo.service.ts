@@ -153,7 +153,7 @@ export class TodoService {
 
   }
 
-  async UpdateUser(email: string, password: string, name:string){
+  async UpdateUser(email: string, password: string, name:string):Promise<any>{
 
     let userData = {
       name: name,
@@ -182,4 +182,33 @@ export class TodoService {
       throw error;
     }
   }
+
+  async UpdateTodo(listid: number, title: string, publicAccess: boolean){
+    let todoData = {
+      listid: listid,
+      title: title,
+      public: publicAccess,
+    }
+
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+
+    try{
+      if (token !== null) {
+        headers = new HttpHeaders({
+          'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+        });
+      }
+      let response = await firstValueFrom(this.httpClient.patch(`https://unfwfspring2024.azurewebsites.net/todo/${listid}`, todoData, {headers}));
+      console.log(response);
+      this.router.navigate(['/View']);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+  }
+
+
 }//end TodoService Class

@@ -23,6 +23,8 @@ import { ViewTodosComponent } from './view-todos/view-todos.component';
 import { MatTableModule } from '@angular/material/table';
 import { OnInit } from '@angular/core';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditDataDialogComponent } from './edit-data-dialog/edit-data-dialog.component';
 
 
 
@@ -37,7 +39,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     TodoListsComponent,
     SidenavComponent,
     ViewTodosComponent,
-    EditUserComponent
+    EditUserComponent,
+    EditDataDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
 
   ],
   providers: [],
