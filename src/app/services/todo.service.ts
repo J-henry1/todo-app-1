@@ -16,6 +16,7 @@ export class TodoService {
   }
 
   UserLoggedIn:EventEmitter<boolean>= new EventEmitter<boolean>();
+  ItemDeleted: EventEmitter<string> = new EventEmitter<string>();
 
   TodoList: Todo[] = [];
   User: User| undefined;
@@ -202,6 +203,33 @@ export class TodoService {
       }
       let response = await firstValueFrom(this.httpClient.patch(`https://unfwfspring2024.azurewebsites.net/todo/${listid}`, todoData, {headers}));
       console.log(response);
+      this.router.navigate(['/View']);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+  }
+
+  async DeleteTodo(listid: number){
+
+    
+    let todoData = {
+      listid: listid,
+    }
+
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+    try{
+      if (token !== null) {
+        headers = new HttpHeaders({
+          'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+        });
+      }
+      let response = await firstValueFrom(this.httpClient.delete(`https://unfwfspring2024.azurewebsites.net/todo/${listid}`, {headers}));
+      console.log(response);
+      this.ItemDeleted.emit(`${listid} Item Deleted`);
       this.router.navigate(['/View']);
       return response;
     }

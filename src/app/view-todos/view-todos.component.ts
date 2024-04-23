@@ -4,6 +4,8 @@ import { Todo } from '../models/todos/todos';
 import { MatTableDataSource } from '@angular/material/table';
 import { EditDataDialogComponent } from '../edit-data-dialog/edit-data-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteSnacksComponent } from '../delete-snacks/delete-snacks.component';
 
 @Component({
   selector: 'app-view-todos',
@@ -17,10 +19,12 @@ export class ViewTodosComponent {
   dataSource: MatTableDataSource<Todo>;
 
 
-  constructor(private todoService: TodoService, private dialog: MatDialog ) {
+  constructor(private todoService: TodoService, private dialog: MatDialog, private _snackBar: MatSnackBar ) {
     this.dataSource = new MatTableDataSource<Todo>([]);
 
   }
+
+  durationInSeconds = 5;
 
   ngOnInit() {
     this.loadTodos();
@@ -47,6 +51,27 @@ export class ViewTodosComponent {
       console.log('The dialog was closed');
     });
   }
+
+  openSnackBar() {
+    this._snackBar.openFromComponent(DeleteSnacksComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
+  
+  async deleteTodo(todo: Todo) {
+    try {
+      let response = await this.todoService.DeleteTodo(todo.id);
+      this.openSnackBar();
+      return response;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+
+  
 }
 
 

@@ -25,6 +25,9 @@ import { OnInit } from '@angular/core';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditDataDialogComponent } from './edit-data-dialog/edit-data-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DeleteSnacksComponent } from './delete-snacks/delete-snacks.component';
+
 
 
 
@@ -40,7 +43,8 @@ import { EditDataDialogComponent } from './edit-data-dialog/edit-data-dialog.com
     SidenavComponent,
     ViewTodosComponent,
     EditUserComponent,
-    EditDataDialogComponent
+    EditDataDialogComponent,
+    DeleteSnacksComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,8 @@ import { EditDataDialogComponent } from './edit-data-dialog/edit-data-dialog.com
     MatDividerModule,
     MatListModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 
   ],
   providers: [],
