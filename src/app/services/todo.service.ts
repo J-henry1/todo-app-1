@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom, of } from 'rxjs';
-import {Todo} from '../models/todos/todos';
+import {SharedTodoUser, Todo} from '../models/todos/todos';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../models/user/user';
 
@@ -20,6 +20,7 @@ export class TodoService {
 
   TodoList: Todo[] = [];
   User: User| undefined;
+  SharedTodoUser: SharedTodoUser | undefined;
 
 
 
@@ -236,6 +237,32 @@ export class TodoService {
     catch(error){
       throw error;
     }
+  }
+
+  async ShareTodo(listid: number, email: SharedTodoUser){
+    let userData = {
+      email: email,
+      listid: listid
+    }
+
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+    try{
+      if (token !== null) {
+        headers = new HttpHeaders({
+          'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+        });
+      }
+      let response = await firstValueFrom(this.httpClient.post(`https://unfwfspring2024.azurewebsites.net/todo/${listid}/share`, userData.email, {headers}));
+      console.log(response);
+      this.router.navigate(['/View']);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+
   }
 
 

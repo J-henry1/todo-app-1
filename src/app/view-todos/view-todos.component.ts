@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { TodoService } from '../services/todo.service';
-import { Todo } from '../models/todos/todos';
+import { SharedTodoUser, Todo } from '../models/todos/todos';
 import { MatTableDataSource } from '@angular/material/table';
 import { EditDataDialogComponent } from '../edit-data-dialog/edit-data-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { DeleteSnacksComponent } from '../delete-snacks/delete-snacks.component';
+import { FormControl, Validators } from '@angular/forms';
+import { ShareTodoComponent } from '../share-todo/share-todo.component';
 
 @Component({
   selector: 'app-view-todos',
@@ -23,6 +25,8 @@ export class ViewTodosComponent {
     this.dataSource = new MatTableDataSource<Todo>([]);
 
   }
+
+  sharedUser = new FormControl('', [Validators.required])
 
   durationInSeconds = 2.5;
 
@@ -52,13 +56,24 @@ export class ViewTodosComponent {
     });
   }
 
+  openShareDialog(todo: Todo): void{
+    const dialogRef = this.dialog.open(ShareTodoComponent, {
+      width: '375px',
+      data: { todo: todo }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  //delete todo code
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   openSnackBar(message: string) {
     this._snackBar.open(message, 'Close', {
       duration: this.durationInSeconds * 1000,
       verticalPosition: this.verticalPosition,
-      panelClass: ['custom-snackbar'] // Apply custom class to the snackbar
     });
   }
 
@@ -75,6 +90,9 @@ export class ViewTodosComponent {
     }
   }
 
+  //share todo code
+
+  
 
   
 }

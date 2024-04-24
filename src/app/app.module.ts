@@ -27,6 +27,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { EditDataDialogComponent } from './edit-data-dialog/edit-data-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DeleteSnacksComponent } from './delete-snacks/delete-snacks.component';
+import { ShareTodoComponent } from './share-todo/share-todo.component';
 
 
 
@@ -44,7 +45,8 @@ import { DeleteSnacksComponent } from './delete-snacks/delete-snacks.component';
     ViewTodosComponent,
     EditUserComponent,
     EditDataDialogComponent,
-    DeleteSnacksComponent
+    DeleteSnacksComponent,
+    ShareTodoComponent
   ],
   imports: [
     BrowserModule,

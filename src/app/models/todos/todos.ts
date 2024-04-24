@@ -4,6 +4,7 @@ export class Todo {
   created_at: Date;
   public_list: boolean; 
   created_by: number;
+  shared_with: SharedTodoUser[] = [];
   
   constructor(id: number, title: string, created_at: Date, public_list: boolean, created_by: number) {
     this.id = id;
@@ -11,6 +12,8 @@ export class Todo {
     this.created_at = created_at;
     this.public_list = public_list;
     this.created_by = created_by;
+    this.shared_with = [];
+    
   }
 }
 
@@ -29,5 +32,9 @@ export class Todo {
   }
 
   export class SharedTodoUser{
-    
+    email: string;
+
+    constructor(email: string){
+      this.email = email;
+    }
   }
