@@ -4,7 +4,7 @@ import { Todo } from '../models/todos/todos';
 import { MatTableDataSource } from '@angular/material/table';
 import { EditDataDialogComponent } from '../edit-data-dialog/edit-data-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { DeleteSnacksComponent } from '../delete-snacks/delete-snacks.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { DeleteSnacksComponent } from '../delete-snacks/delete-snacks.component'
 })
 export class ViewTodosComponent {
   
-  displayedColumns: string[] = ['title', 'created_at', 'created_by', 'public_list', 'edit', 'delete'];
+  displayedColumns: string[] = ['title', 'created_at', 'created_by', 'public_list', 'edit', 'delete', 'share'];
   todos: Todo[] = [];
   dataSource: MatTableDataSource<Todo>;
 
@@ -24,7 +24,7 @@ export class ViewTodosComponent {
 
   }
 
-  durationInSeconds = 5;
+  durationInSeconds = 2.5;
 
   ngOnInit() {
     this.loadTodos();
@@ -52,9 +52,13 @@ export class ViewTodosComponent {
     });
   }
 
-  openSnackBar() {
-    this._snackBar.openFromComponent(DeleteSnacksComponent, {
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'Close', {
       duration: this.durationInSeconds * 1000,
+      verticalPosition: this.verticalPosition,
+      panelClass: ['custom-snackbar'] // Apply custom class to the snackbar
     });
   }
 
@@ -62,10 +66,11 @@ export class ViewTodosComponent {
   async deleteTodo(todo: Todo) {
     try {
       let response = await this.todoService.DeleteTodo(todo.id);
-      this.openSnackBar();
+      this.openSnackBar(`${todo.title} deleted successfully`);
       return response;
     } catch (err) {
       console.error(err);
+      this.openSnackBar(`${todo.title} deletion failed`);
       throw err;
     }
   }

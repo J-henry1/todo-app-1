@@ -27,3 +27,7 @@ export class Todo {
   export class TodoItems{
     
   }
+
+  export class SharedTodoUser{
+    
+  }
