@@ -9,12 +9,9 @@
               <input [formControl]="title"  matInput placeholder="Todo">
             </mat-form-field>
           </p>
-          <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Public Access</mat-label>
-              <input [formControl]="publicAccess" matInput placeholder="Access">
-            </mat-form-field>
-          </p>
+          <mat-checkbox [formControl]="publicAccess">Public Access</mat-checkbox>
+          <br><br>
+  
           <button (click)="CreateTodos()" mat-stroked-button color="accent">Create Todo</button>
     </mat-card-content>
     <mat-card-actions>

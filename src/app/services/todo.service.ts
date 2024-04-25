@@ -71,7 +71,7 @@ export class TodoService {
   async CreateTodo(title: string, publicAccess: boolean) {
     let todoData = {
       title: title,
-      public: publicAccess,
+      public_list: publicAccess,
     };
   
     // Get the token from local storage
@@ -125,7 +125,12 @@ export class TodoService {
         console.log(response);
         return this.TodoList;
       } else {
-        throw new Error('Token not found in local storage');
+        const response = await firstValueFrom(this.httpClient.get<Todo[]>('https://unfwfspring2024.azurewebsites.net/todo'));
+        for(let row of response){
+          this.TodoList.push(row);
+        }
+        console.log(response);
+        return this.TodoList;
       }
      }
      catch(error){
@@ -189,7 +194,7 @@ export class TodoService {
     let todoData = {
       listid: listid,
       title: title,
-      public: publicAccess,
+      public_list: publicAccess,
     }
 
     const token = localStorage.getItem('token');

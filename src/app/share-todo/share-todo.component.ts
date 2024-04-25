@@ -14,6 +14,7 @@ export class ShareTodoComponent {
 
   sharedUser: FormControl;
 
+  //injecting the todo object into a data object
   constructor(@Inject(MAT_DIALOG_DATA) public data: { todo: Todo }, private updateTodo: TodoService) {
     console.log(data);
     this.sharedUser = new FormControl('', [Validators.required, Validators.email]);

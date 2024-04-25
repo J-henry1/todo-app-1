@@ -14,15 +14,15 @@ export class TodoListsComponent {
   }
 
   title = new FormControl('', [Validators.required])
-  publicAccess = new FormControl('', [Validators.required]);
+  publicAccess = new FormControl(false);
 
   
 
   async CreateTodos() {
     try {
       if (this.title.valid && this.publicAccess.valid) {
-        const publicAccessValue = this.parsePublicAccess(this.publicAccess.value as string); // Convert string to boolean
-        const response = await this.CreateTodo.CreateTodo(this.title.value as string, publicAccessValue);
+        // Convert string to boolean
+        const response = await this.CreateTodo.CreateTodo(this.title.value as string, this.publicAccess.value as boolean);
         console.log("Todo created:", response);
       } else {
         console.log("Form is not valid. Todo not created.");
@@ -31,9 +31,4 @@ export class TodoListsComponent {
       console.error("Error creating todo:", error);
     }
   }
-  
-  //method to convert string to boolean
-  private parsePublicAccess(value: string): boolean {
-    return value.toLowerCase() === 'true';
   }
-}

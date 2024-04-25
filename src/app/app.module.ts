@@ -15,7 +15,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TodoListsComponent } from './todo-lists/todo-lists.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -28,6 +27,7 @@ import { EditDataDialogComponent } from './edit-data-dialog/edit-data-dialog.com
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DeleteSnacksComponent } from './delete-snacks/delete-snacks.component';
 import { ShareTodoComponent } from './share-todo/share-todo.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -41,7 +41,6 @@ import { ShareTodoComponent } from './share-todo/share-todo.component';
     NavbarComponent,
     CreateAccountComponent,
     TodoListsComponent,
-    SidenavComponent,
     ViewTodosComponent,
     EditUserComponent,
     EditDataDialogComponent,
@@ -66,7 +65,9 @@ import { ShareTodoComponent } from './share-todo/share-todo.component';
     MatListModule,
     MatTableModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule,
+    
 
   ],
   providers: [],

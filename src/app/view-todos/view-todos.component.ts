@@ -16,24 +16,29 @@ import { ShareTodoComponent } from '../share-todo/share-todo.component';
 })
 export class ViewTodosComponent {
   
-  displayedColumns: string[] = ['title', 'created_at', 'created_by', 'public_list', 'edit', 'delete', 'share'];
-  todos: Todo[] = [];
-  dataSource: MatTableDataSource<Todo>;
+  displayedColumns: string[] = ['title', 'created_at', 'created_by', 'public_list', 'edit', 'delete', 'share'];//array of columns for view Todos
+  todos: Todo[] = [];//Todo object Array
+  dataSource: MatTableDataSource<Todo>;//datasource used for binding the table data to the todo object
 
 
+  //constructor for Todo Service, Dialog Box, and Snack Bar
   constructor(private todoService: TodoService, private dialog: MatDialog, private _snackBar: MatSnackBar ) {
     this.dataSource = new MatTableDataSource<Todo>([]);
 
   }
 
+  //shared user validator for storing user input on shared-todo html input field
   sharedUser = new FormControl('', [Validators.required])
 
+  //variable for setting seconds in snackbar
   durationInSeconds = 2.5;
 
+  //calls the load todos on application initialization phase of component lifecycle
   ngOnInit() {
     this.loadTodos();
   }
 
+  //method for retrieving todos from backend TodoServce
   async loadTodos() {
     try {
       this.todos = await this.todoService.GetTodos();
@@ -45,31 +50,29 @@ export class ViewTodosComponent {
     }
   }
 
+  //opens the edit data dialog box - utilizes services from the MatDialog import
   openDialog(todo: Todo): void{
     const dialogRef = this.dialog.open(EditDataDialogComponent, {
-      width: '375px',
+      width: '450px',
       data: { todo: todo } 
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
+  //opens the share todo dialog box - utilizes services from the MatDialog import
+  //the data object is passed into the share todo component which is part of the constuctor in share-tod as injection
   openShareDialog(todo: Todo): void{
     const dialogRef = this.dialog.open(ShareTodoComponent, {
       width: '375px',
       data: { todo: todo }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   //delete todo code
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
+  //method for opening snackbar - utilizes services from the MatSnackBar import
   openSnackBar(message: string) {
     this._snackBar.open(message, 'Close', {
       duration: this.durationInSeconds * 1000,
@@ -77,7 +80,8 @@ export class ViewTodosComponent {
     });
   }
 
-  
+
+  //method for deleting todo from backend TodoService
   async deleteTodo(todo: Todo) {
     try {
       let response = await this.todoService.DeleteTodo(todo.id);
@@ -90,7 +94,7 @@ export class ViewTodosComponent {
     }
   }
 
-  //share todo code
+
 
   
 
