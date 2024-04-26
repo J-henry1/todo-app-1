@@ -1,0 +1,39 @@
+
+<mat-card class="example-card">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{data.todo.id}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{data.todo.title}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Todo Items
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Todo Items</p>
+            
+          <div *ngFor="let item of todoitems">
+            <ul>
+              <li>
+                #{{item.id}}: {{item.task}}
+                <ul>
+                  <li>Completed: {{item.completed ? 'Yes': 'No'}}</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          
+                
+        </mat-expansion-panel>
+      </mat-accordion>
+  </mat-card>

@@ -28,7 +28,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DeleteSnacksComponent } from './delete-snacks/delete-snacks.component';
 import { ShareTodoComponent } from './share-todo/share-todo.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { ViewListItemComponent } from './view-list-item/view-list-item.component';
+import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
 
 
 
@@ -45,7 +46,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     EditUserComponent,
     EditDataDialogComponent,
     DeleteSnacksComponent,
-    ShareTodoComponent
+    ShareTodoComponent,
+    ViewListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatExpansionPanel,
+    MatExpansionModule
     
 
   ],

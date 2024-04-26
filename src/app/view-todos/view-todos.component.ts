@@ -8,6 +8,7 @@ import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snac
 import { DeleteSnacksComponent } from '../delete-snacks/delete-snacks.component';
 import { FormControl, Validators } from '@angular/forms';
 import { ShareTodoComponent } from '../share-todo/share-todo.component';
+import { ViewListItemComponent } from '../view-list-item/view-list-item.component';
 
 @Component({
   selector: 'app-view-todos',
@@ -80,6 +81,13 @@ export class ViewTodosComponent {
     });
   }
 
+  
+  openTodoListDialog(todo: Todo): void{
+    const dialogRef = this.dialog.open(ViewListItemComponent, {
+      width: '450px',
+      data: { todo: todo } 
+    });
+  }
 
   //method for deleting todo from backend TodoService
   async deleteTodo(todo: Todo) {

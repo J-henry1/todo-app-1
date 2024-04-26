@@ -32,8 +32,6 @@
         <a mat-list-item [routerLink]="['/Todos']" *ngIf="isLoginMode">Add Todo</a>
         <a mat-list-item [routerLink]="['/View']" *ngIf="isLoginMode">View Todos</a>
         <a mat-list-item [routerLink]="['/View']" *ngIf="!isLoginMode">View Todos - Public</a>
-        <a mat-list-item [routerLink]="['/Home']" *ngIf="isLoginMode">Edit Todo</a>
-        <a mat-list-item [routerLink]="['/Create']" *ngIf="isLoginMode">Edit User</a>
         <a mat-list-item *ngIf="!isLoginMode" [routerLink]="['/Home']">Please Login</a>
       </mat-nav-list>
     </mat-sidenav>

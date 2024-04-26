@@ -7,7 +7,12 @@
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef mat-sticky="true"> Title </th>
     <!-- let todo acts as a loop for setting the cell be equal to the index of my todo array -->
-    <td mat-cell *matCellDef="let todo"> {{ todo.title }} </td>
+    <td mat-cell *matCellDef="let todo"> 
+      <button mat-icon-button color="primary" (click)="openTodoListDialog(todo)">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      {{ todo.title }} 
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="created_at">
@@ -26,7 +31,7 @@
   </ng-container>
 
   <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef> Edit Todo </th>
+    <th mat-header-cell *matHeaderCellDef>Edit Todo</th>
     <td mat-cell *matCellDef="let todo"> 
       <mat-dialog-actions>
         <button mat-icon-button color="primary" (click)="openDialog(todo)">

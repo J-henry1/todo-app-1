@@ -138,6 +138,29 @@ export class TodoService {
        throw error;
      }
     }
+
+  //gets todo list by id
+  async GetTodoList(listid: number){
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+
+    if (token !== null) {
+     headers = new HttpHeaders({
+       'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+     });
+    }
+
+    try{
+      let response = await firstValueFrom(this.httpClient.get<Todo>(`https://unfwfspring2024.azurewebsites.net/todo/${listid}`, { headers }));
+      console.log(response);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+
+  }//end get todo list by id
   async GetUser():Promise<User>{
     const token = localStorage.getItem('token');
 
