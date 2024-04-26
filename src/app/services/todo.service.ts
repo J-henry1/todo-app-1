@@ -294,4 +294,32 @@ export class TodoService {
   }
 
 
+  async UpdateListItem(listid: number, itemid: number, itemStatus: boolean){
+    let itemData = {
+      listid: listid,
+      itemid: itemid,
+      itemStatus: itemStatus
+    }
+
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+    try{
+      if (token !== null) {
+        headers = new HttpHeaders({
+          'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+        });
+      }
+      let response = await firstValueFrom(this.httpClient.patch(`https://unfwfspring2024.azurewebsites.net/todo/${listid}/item/${itemid}`, itemData, {headers}));
+      console.log(response);
+      this.router.navigate(['/View']);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+
+  }
+
+
 }//end TodoService Class

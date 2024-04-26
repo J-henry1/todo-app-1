@@ -2,8 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Todo, TodoItems } from '../models/todos/todos';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -18,6 +17,10 @@ export class ViewListItemComponent {
   todoitems: TodoItems[] = []
 
   panelOpenState = false;
+
+  addTodoItemPanelState= false;
+
+  
 
 
   ngOnInit():void {
@@ -35,6 +38,29 @@ export class ViewListItemComponent {
     } catch (err) {
       console.error(err);
       throw err;
+    }
+  }
+
+
+  async updateTodoItemStatus(item: TodoItems) {
+    try {
+      item.completed = !item.completed;
+      await this.UpdateTodoItem(item);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  
+  async UpdateTodoItem(item: TodoItems) {
+    try {
+      // Call your service method to update the todo item's status in the database
+      let response = await this.todoService.UpdateListItem(item.list_id, item.id, item.completed);
+      console.log(response);
+      // Optionally, you can handle the response or navigate to another page
+    } catch (error) {
+      console.error(error);
+      // Handle errors if any
     }
   }
 

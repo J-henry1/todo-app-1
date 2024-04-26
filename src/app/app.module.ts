@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -70,7 +70,8 @@ import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion
     MatSnackBarModule,
     MatCheckboxModule,
     MatExpansionPanel,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButton
     
 
   ],

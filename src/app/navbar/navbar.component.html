@@ -13,8 +13,12 @@
     <mat-icon>person_add</mat-icon>
   </button>
   
-  <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']">
-    <mat-icon>login</mat-icon>
+  <button mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/Home']" *ngIf="!isLoginMode">
+    <mat-icon >login</mat-icon>
+  </button>
+
+  <button *ngIf="isLoginMode" mat-icon-button class="example-icon" aria-label="Login icon" [routerLink]="['/']" (click)="clearLocalStorage()">
+    <mat-icon>logout</mat-icon>
   </button>
 
   <button mat-icon-button class="example-icon" aria-label="Edit Account" [routerLink]="['/Account']" *ngIf="isLoginMode">

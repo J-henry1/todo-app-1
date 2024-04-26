@@ -22,6 +22,10 @@ export class NavbarComponent {
     });
   }
 
+  clearLocalStorage() {
+    localStorage.removeItem('token');
+  }
+
   toggleLogin() {
     this.isLoginMode = !this.isLoginMode;
   }

@@ -10,17 +10,17 @@
               {{data.todo.title}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
+          <p>Please complete all of your tasks ASAP</p>
         </mat-expansion-panel>
         <mat-expansion-panel (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Todo Items
+              <p *ngIf="todoitems.length > 0">Todo Items</p>
+              <p *ngIf="todoitems.length == 0">No Tasks have been added</p>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <p>Todo Items</p>
             
           <div *ngFor="let item of todoitems">
             <ul>
@@ -28,11 +28,14 @@
                 #{{item.id}}: {{item.task}}
                 <ul>
                   <li>Completed: {{item.completed ? 'Yes': 'No'}}</li>
+                  <mat-checkbox [ngModel]="item.completed" (change)="updateTodoItemStatus(item)">Completed:</mat-checkbox>
                 </ul>
               </li>
             </ul>
           </div>
           
+          
+        
                 
         </mat-expansion-panel>
       </mat-accordion>
