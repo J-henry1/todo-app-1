@@ -3,6 +3,7 @@ import { TodoService } from '../services/todo.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Todo, TodoItems } from '../models/todos/todos';
 import { MatButtonModule } from '@angular/material/button';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,10 +18,8 @@ export class ViewListItemComponent {
   todoitems: TodoItems[] = []
 
   panelOpenState = false;
-
-  addTodoItemPanelState= false;
-
   
+  newTodoTitle = new FormControl('Another thing todo', Validators.required)
 
 
   ngOnInit():void {

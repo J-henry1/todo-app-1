@@ -33,10 +33,18 @@
               </li>
             </ul>
           </div>
-          
-          
-        
-                
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <p *ngIf="todoitems.length > 0">Add Todo Items</p>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input type="email" matInput placeholder="Title">
+          </mat-form-field>
         </mat-expansion-panel>
       </mat-accordion>
   </mat-card>

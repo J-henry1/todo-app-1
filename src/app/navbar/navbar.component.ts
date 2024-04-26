@@ -24,6 +24,7 @@ export class NavbarComponent {
 
   clearLocalStorage() {
     localStorage.removeItem('token');
+    this.TodoServices.UserLoggedIn.next(false);
   }
 
   toggleLogin() {
