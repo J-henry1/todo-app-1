@@ -30,7 +30,8 @@ import { ShareTodoComponent } from './share-todo/share-todo.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ViewListItemComponent } from './view-list-item/view-list-item.component';
 import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 
 
@@ -71,11 +72,13 @@ import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion
     MatCheckboxModule,
     MatExpansionPanel,
     MatExpansionModule,
-    MatButton
+    MatButton,
+    MatDatepickerModule,
+    
     
 
   ],
-  providers: [],
+  providers: [provideNativeDateAdapter()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

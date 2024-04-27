@@ -294,11 +294,12 @@ export class TodoService {
   }
 
 
-  async UpdateListItem(listid: number, itemid: number, itemStatus: boolean){
+  async UpdateListItem(list_id: number, item_id: number, completed: boolean, task: string){
     let itemData = {
-      listid: listid,
-      itemid: itemid,
-      itemStatus: itemStatus
+      list_id: list_id,
+      item_id : item_id,
+      completed: completed,
+      task: task
     }
 
     const token = localStorage.getItem('token');
@@ -310,7 +311,35 @@ export class TodoService {
           'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
         });
       }
-      let response = await firstValueFrom(this.httpClient.patch(`https://unfwfspring2024.azurewebsites.net/todo/${listid}/item/${itemid}`, itemData, {headers}));
+      let response = await firstValueFrom(this.httpClient.patch(`https://unfwfspring2024.azurewebsites.net/todo/${list_id}/item/${item_id}`, itemData, {headers}));
+      console.log(response);
+      this.router.navigate(['/View']);
+      return response;
+    }
+    catch(error){
+      throw error;
+    }
+
+  }
+
+  async AddListItem(listid: number, task: string, dueDate: Date){
+
+    let itemData = {
+  
+      task: task,
+      dueDate: dueDate
+    }
+
+    const token = localStorage.getItem('token');
+
+    let headers: HttpHeaders | undefined;
+    try{
+      if (token !== null) {
+        headers = new HttpHeaders({
+          'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+        });
+      }
+      let response = await firstValueFrom(this.httpClient.post(`https://unfwfspring2024.azurewebsites.net/todo/${listid}/item`, itemData, {headers}));
       console.log(response);
       this.router.navigate(['/View']);
       return response;

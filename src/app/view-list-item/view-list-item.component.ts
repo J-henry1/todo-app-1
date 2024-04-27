@@ -2,8 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Todo, TodoItems } from '../models/todos/todos';
-import { MatButtonModule } from '@angular/material/button';
 import { FormControl, Validators } from '@angular/forms';
+
+
 
 
 @Component({
@@ -19,7 +20,10 @@ export class ViewListItemComponent {
 
   panelOpenState = false;
   
-  newTodoTitle = new FormControl('Another thing todo', Validators.required)
+  newTodoItemTitle = new FormControl('Another thing todo', Validators.required)
+  newTodoItemDate = new FormControl(new Date(), Validators.required);
+
+  updateTodoItemTitle = new FormControl('', Validators.required)
 
 
   ngOnInit():void {
@@ -54,7 +58,7 @@ export class ViewListItemComponent {
   async UpdateTodoItem(item: TodoItems) {
     try {
       // Call your service method to update the todo item's status in the database
-      let response = await this.todoService.UpdateListItem(item.list_id, item.id, item.completed);
+      let response = await this.todoService.UpdateListItem(item.list_id, item.id, item.completed, item.task);
       console.log(response);
       // Optionally, you can handle the response or navigate to another page
     } catch (error) {
@@ -62,5 +66,22 @@ export class ViewListItemComponent {
       // Handle errors if any
     }
   }
+
+  async AddNewTodoItem(){
+    try {
+      if(!this.newTodoItemTitle.invalid || !this.newTodoItemDate.invalid){
+        let response = await this.todoService.AddListItem(this.data.todo.id as number, this.newTodoItemTitle.value as string, this.newTodoItemDate.value as Date);
+        console.log(response);
+        // this.GetTodoListID(this.data.todo);
+      }
+      else{
+        console.error("Invalid input");
+      }
+
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }//end add new todo item
 
 }
