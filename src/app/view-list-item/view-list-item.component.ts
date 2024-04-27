@@ -84,4 +84,15 @@ export class ViewListItemComponent {
     }
   }//end add new todo item
 
+  async DeleteTodoItem(item: TodoItems){
+    try {
+      let response = await this.todoService.DeleteListItem(item.list_id, item.id);
+      console.log(response);
+      this.GetTodoListID(this.data.todo);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
 }

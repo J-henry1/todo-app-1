@@ -350,5 +350,32 @@ export class TodoService {
 
   }
 
+  async DeleteListItem(list_id: number, item_id: number){
+    let itemData = {
+      list_id: list_id,
+      item_id : item_id
+    }
+    const token = localStorage.getItem('token');
+    let headers: HttpHeaders | undefined;
+
+    try{
+      if (token !== null) {
+        headers = new HttpHeaders({
+          'Authorization': `Bearer ${JSON.parse(token).token}` // Extract the token value from the object
+        });
+      }
+      let response = await firstValueFrom(this.httpClient.delete(`https://unfwfspring2024.azurewebsites.net/todo/${list_id}/item/${item_id}`, {headers}));
+      console.log(response);
+      this.router.navigate(['/View']);
+      return response;
+    }
+    catch(error){
+      throw error;
+  }
+
+
+
+  }
+
 
 }//end TodoService Class

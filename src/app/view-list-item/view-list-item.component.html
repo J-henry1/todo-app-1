@@ -24,8 +24,12 @@
             <ul>
               <li>
                 #{{item.id}} {{item.task}}
+                <button mat-icon-button class="example-icon" aria-label="Person icon" [routerLink]="['/View']" (click)="DeleteTodoItem(item)">
+                  <mat-icon>delete</mat-icon>
+                </button>
                 <ul>
                   <mat-checkbox [ngModel]="item.completed" (change)="updateTodoItemStatus(item)">Completed:</mat-checkbox>
+            
                 </ul>
               </li>
             </ul>
@@ -35,7 +39,7 @@
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <p *ngIf="todoitems.length > 0">Add Todo Items</p>
+              <p>Add Todo Items</p>
             </mat-panel-title>
           
         </mat-expansion-panel-header>
